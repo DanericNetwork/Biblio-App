@@ -1,4 +1,4 @@
-name: Build Laravel
+name: Build Laravel and NPM Packages
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ "dev" ]
 
 jobs:
-  laravel-tests:
+  biblio-build:
 
     runs-on: ubuntu-latest
 
