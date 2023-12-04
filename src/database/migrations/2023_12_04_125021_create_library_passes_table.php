@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('library_passes', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name' );
-            $table->string('last_name' );
-            $table->string('email' )->unique();
-            $table->string('residence');
-            $table->string('street');
-            $table->string('zip_code');
-            $table->string('house_number');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete("cascade");
+            $table->string('barcode');
+            $table->boolean('is_active')->default(true);
             $table->char('modified_kind' ,1)->default('I');
             $table->unsignedBigInteger('modified_user');
             $table->foreign('modified_user')->references('id')->on('users')->onDelete("cascade");
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('library_passes');
     }
 };
