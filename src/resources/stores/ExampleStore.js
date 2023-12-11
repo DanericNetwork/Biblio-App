@@ -16,9 +16,7 @@ export const useExampleStore = defineStore('example', { // The name of the store
             this.count++ 
         },
     },
-    return: { // With return you can access data from anywhere in the app. Also known as getters.
-        getCount() {
-            return this.count
-        },
-    },
+    getters: { // Getters are functions that can be called from anywhere in the app.
+        getCount: (state) => state.count
+    }
 })
