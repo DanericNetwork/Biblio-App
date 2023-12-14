@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import SearchBar from './components/SearchBar.vue';
-import SearchButton from './components/SearchButton.vue';
+import SearchBar from './SearchBar.vue';
+import SearchButton from './SearchButton.vue';
 
 export default {
     components: {
@@ -34,7 +34,4 @@ export default {
     margin-bottom: 20px;
 }
 
-body {
-    background-color: gray;
-}
 </style>
