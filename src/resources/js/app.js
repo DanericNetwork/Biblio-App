@@ -2,6 +2,8 @@ import './bootstrap';
 import { createApp, h } from 'vue'
 import { createPinia } from 'pinia'
 import { createInertiaApp } from '@inertiajs/vue3'
+import '../vue/scss/global.scss'
+import '../vue/scss/variables.scss'
 
 createInertiaApp({
     resolve: name => {
