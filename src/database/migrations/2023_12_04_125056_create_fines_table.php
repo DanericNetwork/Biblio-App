@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('fines', function (Blueprint $table) {
             $table->id();
-            $table->char('modified_kind' ,1)->default('I');
             $table->unsignedBigInteger('grant_id');
             $table->foreign('grant_id')->references('id')->on('grants')->onDelete("cascade");
             $table->double('amount');
+            $table->char('modified_kind' ,1)->default('I');
             $table->unsignedBigInteger('modified_user');
             $table->foreign('modified_user')->references('id')->on('users')->onDelete("cascade");
             $table->timestamps();
