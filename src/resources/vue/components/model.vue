@@ -11,7 +11,7 @@
 
 <style scoped>
     .box {
-        background-color: darkblue;
+        background-color: #1D243A;
         width: 400px;
         height: 400px;
         position: relative;
@@ -23,6 +23,7 @@
         width: 40px;
         top: 5px;
         right: 5px;
+        fill: #fff;
     }
 </style>
     
