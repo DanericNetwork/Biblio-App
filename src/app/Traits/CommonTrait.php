@@ -17,12 +17,12 @@ trait CommonTrait {
      * @param int $code http status code
      * @return JsonResponse response formatted in json
      */
-    public function CommonResponse(ResponseStatus $status, string $message, array|null $data, int $code): JsonResponse
+    public function CommonResponse(ResponseStatus $status, string $message, array|null $data): JsonResponse
     {
         return response()->json([
-            'status' => $status,
+            'status' => $status->label(),
             'message' => $message,
             'data' => $data
-        ], $code);
+        ], $status->getStatusCode());
     }
 }

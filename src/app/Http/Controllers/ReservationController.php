@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ModifiedEnum;
+use App\Enums\ResponseStatus;
+use App\Http\Requests\ReserveRequest;
 use App\Models\Reservation;
+use App\Traits\CommonTrait;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
+    use CommonTrait;
     /**
      * Display a listing of the resource.
      */
@@ -26,9 +31,22 @@ class ReservationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ReserveRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $reservation = Reservation::create([
+            'user_id' => $validated['user_id'],
+            'item_id' => $validated['item_id'],
+            'status' => $validated['status'],
+            'modified_kind' => ModifiedEnum::inserted,
+            'modified_user' => auth()->id(),
+        ]);
+
+        return $this->CommonResponse(ResponseStatus::created,
+            'Reservation created successfully',
+            $reservation,
+        );
     }
 
     /**
@@ -50,9 +68,22 @@ class ReservationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Reservation $reservation)
+    public function update(ReserveRequest $request, Reservation $reservation)
     {
-        //
+        $validated = $request->validated();
+
+        $reservation->update([
+            'user_id' => $validated['user_id'],
+            'item_id' => $validated['item_id'],
+            'status' => $validated['status'],
+            'modified_kind' => ModifiedEnum::modified,
+            'modified_user' => auth()->id(),
+        ]);
+
+        return $this->CommonResponse(ResponseStatus::success,
+            'Reservation updated successfully',
+            ["reservation" => $reservation],
+        );
     }
 
     /**
@@ -60,6 +91,11 @@ class ReservationController extends Controller
      */
     public function destroy(Reservation $reservation)
     {
-        //
+        $reservation->delete();
+
+        return $this->CommonResponse(ResponseStatus::success,
+            'Reservation deleted successfully',
+            null,
+        );
     }
 }

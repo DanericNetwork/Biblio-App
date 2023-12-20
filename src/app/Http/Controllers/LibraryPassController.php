@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ModifiedEnum;
+use App\Enums\ResponseStatus;
+use App\Http\Requests\LibraryPassRequest;
 use App\Models\LibraryPass;
 use Illuminate\Http\Request;
+use App\Traits\CommonTrait;
 
 class LibraryPassController extends Controller
 {
+    use CommonTrait;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $passes = LibraryPass::all();
     }
 
     /**
@@ -26,9 +31,22 @@ class LibraryPassController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(LibraryPassRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $libraryPass = LibraryPass::create([
+            'user_id' => $validated['user_id'],
+            'barcode' => $validated['barcode'],
+            'is_active' => $validated['is_active'],
+            'modified_kind' => ModifiedEnum::inserted,
+            'modified_user' => auth()->id(),
+        ]);
+
+        return $this->CommonResponse(ResponseStatus::created,
+            'Library pass created successfully',
+            $libraryPass,
+        );
     }
 
     /**
@@ -50,9 +68,22 @@ class LibraryPassController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, LibraryPass $libraryPass)
+    public function update(LibraryPassRequest $request, LibraryPass $libraryPass)
     {
-        //
+        $validated = $request->validated();
+
+        $libraryPass->update([
+            'user_id' => $validated['user_id'],
+            'barcode' => $validated['barcode'],
+            'is_active' => $validated['is_active'],
+            'modified_kind' => ModifiedEnum::modified,
+            'modified_user' => auth()->user()->id,
+        ]);
+
+        return $this->CommonResponse(ResponseStatus::success,
+            'Library pass updated successfully',
+            null,
+        );
     }
 
     /**
@@ -60,6 +91,10 @@ class LibraryPassController extends Controller
      */
     public function destroy(LibraryPass $libraryPass)
     {
-        //
+        $libraryPass->delete();
+        return $this->CommonResponse(ResponseStatus::success,
+            'Library pass deleted successfully',
+            null,
+        );
     }
 }
