@@ -25,6 +25,15 @@
 				default: () => {},
 			},
 		},
+		methods: {
+			handleClick() {
+				if (this.buttonAction) {
+					this.buttonAction();
+				} else {
+					console.log('No button action defined');
+				}
+			},
+		},
 	};
 </script>
 
