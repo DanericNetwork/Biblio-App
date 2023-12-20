@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ModifiedEnum;
+use App\Enums\ResponseStatus;
+use App\Http\Requests\ItemRequest;
 use App\Models\Item;
-use Illuminate\Http\Request;
+use App\Traits\CommonTrait;
 
 class ItemController extends Controller
 {
+    use CommonTrait;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        // render page
     }
 
     /**
@@ -20,15 +24,28 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        // render page
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ItemRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $item = Item::create([
+            'Identifier' => '', //TODO: Use trait to generate valid identifier
+            'type' => $validated['type'],
+            'name' => $validated['name'],
+            'description' => $validated['description'],
+            'category' => $validated['category'],
+            'ISBN' => $validated['ISBN'],
+            'rating' => $validated['rating'],
+            'borrowing_time' => $validated['borrowing_time'],
+            'modified_kind' => 'I',
+            'modified_user' => auth()->user()->id,
+        ]);
     }
 
     /**
@@ -36,23 +53,34 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Item $item)
-    {
-        //
+        // render page
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Item $item)
+    public function update(ItemRequest $request, Item $item)
     {
-        //
+        $validated = $request->validated();
+
+        // update the items with the new data
+        $item->update([
+            'type' => $validated['type'],
+            'name' => $validated['name'],
+            'description' => $validated['description'],
+            'category' => $validated['category'],
+            'ISBN' => $validated['ISBN'],
+            'rating' => $validated['rating'],
+            'borrowing_time' => $validated['borrowing_time'],
+            'modified_kind' => ModifiedEnum::modified,
+            'modified_user' => auth()->id(),
+        ]);
+
+        return $this->CommonResponse(
+            ResponseStatus::success,
+            'Item updated',
+            $item
+        );
     }
 
     /**
@@ -60,6 +88,11 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        //
+        $item->delete();
+        return $this->CommonResponse(
+            ResponseStatus::success,
+            'Item deleted',
+            null,
+        );
     }
 }

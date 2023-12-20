@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\ResponseStatus;
-use App\Http\Requests\LibraryPassReadRequest;
+use App\Http\Requests\LibraryPassRequest;
 use App\Models\LibraryPass;
 use App\Models\User;
 use App\Traits\CommonTrait;
@@ -11,7 +11,7 @@ use App\Traits\CommonTrait;
 class SessionController extends Controller
 {
     use CommonTrait;
-    public function auth(LibraryPassReadRequest $request)
+    public function auth(LibraryPassRequest $request)
     {
         $code = $request->validated()['code'];
 
@@ -20,7 +20,6 @@ class SessionController extends Controller
                 ResponseStatus::validationError,
                 'Code is required',
                 null,
-                ResponseStatus::validationError->getStatusCode()
             );
         }
 
@@ -31,7 +30,6 @@ class SessionController extends Controller
                 ResponseStatus::unauthorized,
                 'Incorrect code',
                 null,
-                ResponseStatus::unauthorized->getStatusCode()
             );
         }
 
@@ -42,7 +40,6 @@ class SessionController extends Controller
                 ResponseStatus::unauthorized,
                 'Incorrect code',
                 null,
-                ResponseStatus::unauthorized->getStatusCode()
             );
         }
 
@@ -52,7 +49,6 @@ class SessionController extends Controller
             ResponseStatus::success,
             'User logged in current session',
             ['user' => $user],
-            ResponseStatus::success->getStatusCode()
         );
     }
 }
