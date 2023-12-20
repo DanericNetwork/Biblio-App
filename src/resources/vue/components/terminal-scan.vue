@@ -1,5 +1,5 @@
 <template>
-	<div class="index">
+	<div>
 		<Box>
 			<div class="content">
 				<svg class="scan-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -8,7 +8,7 @@
 				<span class="text">Scan een artikel om te lenen</span>
 			</div>
 			<Input type="text" placeholder="Voer wat in" class="text-medium" />
-			<Button content="Zoek" buttonAction="alert('hmmm')" />
+			<Button content="Zoek" :buttonAction="searchInput" />
 		</Box>
 	</div>
 </template>
@@ -25,44 +25,37 @@
 			Input
 		},
 		methods: {
-			buttonAction() {
-				alert('Button clicked!');
+			searchInput() {
+				// TODO: Implement search input
+				console.log('Search input');
 			},
 		},
 	};
 
 </script>
 <style lang="scss">
-	.index {
+	.content {
 		display: flex;
-		flex-direction: column;
-		justify-content: center;
 		align-items: center;
-		height: 100vh;
+		flex-direction: row;
+		gap: 40px;
+		margin-bottom: 17px;
 
-		.content {
-			display: flex;
-			align-items: center;
-			flex-direction: row;
-			gap: 40px;
-			margin-bottom: 17px;
-
-			.text {
-				color: #000;
-				max-width: 245px;
-				font-size: 28px;
-				font-weight: 700;
-				text-align: center;
-			}
-
-			.scan-icon {
-				width: 54px;
-				height: 53px;
-			}
+		.text {
+			color: #000;
+			max-width: 245px;
+			font-size: 28px;
+			font-weight: 700;
+			text-align: center;
 		}
 
-		.button {
-			margin-top: 15px;
+		.scan-icon {
+			width: 54px;
+			height: 53px;
 		}
+	}
+
+	.button {
+		margin-top: 15px;
 	}
 </style>
