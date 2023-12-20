@@ -7,7 +7,7 @@
           <p>{{ description }}</p>
       </div>
     </div>
-    <div v-if="warning === true" class="right">
+    <div v-if="warning" class="right">
       <Icon icon="warning" size="35" />
     </div>
   </div>
