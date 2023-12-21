@@ -10,4 +10,19 @@ export default defineConfig({
         }),
         vue()
     ],
+    resolve: {
+        alias: {
+            '@': '../',
+            '@components': 'resources/vue/components',
+            '@scss': './resources/vue/scss',
+        },
+    },
+    css: {
+        preprocessorOptions: {
+            scss: {
+                additionalData: `@import "@scss/variables.scss";`,
+                additionalData: `@import "@scss/global.scss";`,
+            },
+        },
+    },
 });
