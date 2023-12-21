@@ -5,6 +5,7 @@ namespace App\Enums;
 enum ResponseStatus: string
 {
     case success = 'success';
+    case created = 'created';
     case error = 'error';
     case unauthorized = 'unauthorized';
     case forbidden = 'forbidden';
@@ -16,6 +17,7 @@ enum ResponseStatus: string
     {
         return match ($this) {
             static::success => 200,
+            static::created => 201,
             static::error => 400,
             static::unauthorized => 401,
             static::forbidden => 403,
@@ -30,6 +32,7 @@ enum ResponseStatus: string
         return match ($this) {
             static::success => 'Success',
             static::error => 'Error',
+            static::created => 'Created',
             static::unauthorized => 'Unauthorized',
             static::forbidden => 'Forbidden',
             static::notFound => 'Not Found',

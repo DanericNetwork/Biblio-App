@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ModifiedEnum;
+use App\Enums\ResponseStatus;
+use App\Http\Requests\GrantRequest;
 use App\Models\Grant;
 use Illuminate\Http\Request;
+use App\Traits\CommonTrait;
 
 class GrantController extends Controller
 {
+    use CommonTrait;
     /**
      * Display a listing of the resource.
      */
@@ -26,9 +31,21 @@ class GrantController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(GrantRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $grant = Grant::create([
+            'user_id' => $validated['user_id'],
+            'item_id' => $validated['item_id'],
+            'borrowed_date' => $validated['borrowed_date'],
+            'return_date' => $validated['return_date'],
+            'modified_kind' => ModifiedEnum::inserted,
+            'modified_user' => Auth()->id(),
+        ]);
+        return $this->CommonResponse(
+            ResponseStatus::created,
+            'Grant created successfully',
+            $grant);
     }
 
     /**
@@ -50,9 +67,23 @@ class GrantController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Grant $grant)
+    public function update(GrantRequest $request, Grant $grant)
     {
-        //
+        $validated = $request->validated();
+
+        $grant->update([
+            'user_id' => $validated['user_id'],
+            'item_id' => $validated['item_id'],
+            'borrowed_date' => $validated['borrowed_date'],
+            'return_date' => $validated['return_date'],
+            'modified_kind' => ModifiedEnum::modified,
+            'modified_user' => Auth()->id(),
+        ]);
+
+        return $this->CommonResponse(
+            ResponseStatus::success,
+            'Grant updated successfully',
+            ['grant' => $grant]);
     }
 
     /**
@@ -60,6 +91,10 @@ class GrantController extends Controller
      */
     public function destroy(Grant $grant)
     {
-        //
+        $grant->delete();
+        return $this->CommonResponse(
+            ResponseStatus::success,
+            'Grant deleted successfully',
+            null);
     }
 }

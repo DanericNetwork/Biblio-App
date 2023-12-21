@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ModifiedEnum;
+use App\Enums\ResponseStatus;
+use App\Http\Requests\PaymentTransactionRequest;
 use App\Models\PaymentTransaction;
 use Illuminate\Http\Request;
+use App\Traits\CommonTrait;
 
 class PaymentTransactionController extends Controller
 {
+    use CommonTrait;
     /**
      * Display a listing of the resource.
      */
@@ -26,9 +31,21 @@ class PaymentTransactionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PaymentTransactionRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $paymentTransaction = PaymentTransaction::create([
+            'fine_id' => $validated['fine_id'],
+            'amount' => $validated['amount'],
+            'modified_kind' => ModifiedEnum::inserted,
+            'modified_user' => Auth()->id(),
+        ]);
+
+        return $this->CommonResponse(
+            ResponseStatus::created,
+            'Payment transaction created successfully',
+            ['paymentTransaction' => $paymentTransaction],
+        );
     }
 
     /**
@@ -36,7 +53,7 @@ class PaymentTransactionController extends Controller
      */
     public function show(PaymentTransaction $paymentTransaction)
     {
-        //
+
     }
 
     /**
@@ -50,9 +67,20 @@ class PaymentTransactionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, PaymentTransaction $paymentTransaction)
+    public function update(PaymentTransactionRequest $request, PaymentTransaction $paymentTransaction)
     {
-        //
+        $validated = $request->validated();
+        $paymentTransaction->update([
+            'amount' => $validated['amount'],
+            'modified_kind' => ModifiedEnum::modified,
+            'modified_user' => Auth()->id(),
+        ]);
+
+        return $this->CommonResponse(
+            ResponseStatus::success,
+            'Payment transaction updated successfully',
+            ['paymentTransaction' => $paymentTransaction],
+        );
     }
 
     /**
@@ -60,6 +88,11 @@ class PaymentTransactionController extends Controller
      */
     public function destroy(PaymentTransaction $paymentTransaction)
     {
-        //
+        $paymentTransaction->delete();
+        return $this->CommonResponse(
+            ResponseStatus::success,
+            'Payment transaction deleted successfully',
+            null,
+        );
     }
 }
