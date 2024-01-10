@@ -1,5 +1,5 @@
 <template>
-    <div v-html="iconSVG"></div>
+    <div class="icon" v-html="iconSVG"></div>
 </template>
 
 <script>
@@ -32,4 +32,9 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="scss">
+  .icon {
+    display: flex;
+    align-items: center;
+  }
+</style>
