@@ -1,5 +1,5 @@
 <template>
-    <div class="box" :style="{ backgroundColor: color }">
+    <div class="box" :style="{ backgroundColor: color, flexDirection: direction }">
         <slot></slot>
     </div>
 </template>
@@ -11,6 +11,10 @@
                 type: String,
                 default: '#f2f2f2',
             },
+            direction: {
+                type: String,
+                default: 'column',
+            },
         },
     };
 </script>
@@ -20,7 +24,6 @@
         border-radius: 5px;
         width: fit-content;
         display: flex;
-        flex-direction: column;
         justify-content: space-between;
         align-items: center;
     }
