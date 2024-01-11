@@ -10,7 +10,7 @@
 					<Icon v-if="!text" :icon="icon" size="52px" />
 					<Input type="text" :placeholder="placeholder" class="text-medium" />
 				</div>
-				<Button content="Zoek" :buttonAction="searchInput" />
+				<Button :content="buttonText" :buttonAction="searchInput" />
 			</div>
 		</Box>
 	</div>
@@ -50,6 +50,10 @@
 			icon: {
 				type: String,
 				default: 'default',
+			},
+			buttonText: {
+				type: String,
+				default: 'Button',
 			},
 		},
 	};

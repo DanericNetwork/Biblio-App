@@ -1,7 +1,7 @@
 <template>
   <div class="terminal-content">
     <span class="terminal-title">Scan uw pas om te lenen, <br> of een artikel om terug te brengen</span>
-    <TerminalScan text="" icon="scan-icon" direction="row" placeholder="101010101" />
+    <TerminalScan text="" buttonText="Zoeken" icon="scan-icon" direction="row" placeholder="101010101" />
   </div>
 </template>
 <script>
