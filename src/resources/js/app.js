@@ -4,8 +4,7 @@ import { createPinia } from 'pinia'
 import { createInertiaApp } from '@inertiajs/vue3'
 import ToastPlugin from "vue-toastification";
 import "vue-toastification/dist/index.css";
-import '../vue/scss/global.scss'
-import '../vue/scss/variables.scss'
+import '@scss/global.scss';
 
 createInertiaApp({
   resolve: name => {
