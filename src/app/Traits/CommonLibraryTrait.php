@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Models\Item;
 use App\Models\LibraryPass;
 use Illuminate\Support\Env;
 
@@ -48,6 +49,27 @@ trait CommonLibraryTrait {
     private function isLibraryPassBarCodeAlreadyInUse($barcode): bool
     {
         return LibraryPass::where('barcode', $barcode)->exists();
+    }
+
+
+    public function generateValidItemIdentifier(): string
+    {
+        $identifier = $this->generateItemIdentifier();
+        while($this->isItemIdentifierAlreadyInUse($identifier)) {
+            $identifier = $this->generateItemIdentifier();
+        }
+        return $identifier;
+    }
+
+    private function generateItemIdentifier(): string
+    {
+        $prefix = "ITM";
+        return $prefix . $this->generateRandomNumber(16);
+    }
+
+    private function isItemIdentifierAlreadyInUse($identifier): bool
+    {
+        return Item::where('identifier', $identifier)->exists();
     }
 }
 
