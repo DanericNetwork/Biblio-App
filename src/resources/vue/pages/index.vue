@@ -30,7 +30,6 @@
       font-weight: 700;
       text-align: center;
       color: #F7F4F3;
-      max-width: 840px;
     }
   }
 </style>
