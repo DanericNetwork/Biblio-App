@@ -1,14 +1,17 @@
 <template>
 	<div>
-		<Box>
+		<Box :direction="direction">
 			<div class="content">
-				<svg class="scan-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-					<path d="M15 3H21V8H19V5H15V3ZM9 3V5H5V8H3V3H9ZM15 21V19H19V16H21V21H15ZM9 21H3V16H5V19H9V21ZM3 11H21V13H3V11Z"></path>
-				</svg>
-				<span class="text">Scan een artikel om te lenen</span>
+				<Icon v-if="text" icon="scan-icon" size="52px" />
+				<span v-if="text" class="text">{{ text }}</span>
 			</div>
-			<Input type="text" placeholder="Voer wat in" class="text-medium" />
-			<Button content="Zoek" :buttonAction="searchInput" />
+			<div class="form">
+				<div class="form-input">
+					<Icon v-if="!text" :icon="icon" size="52px" />
+					<Input type="text" :placeholder="placeholder" class="text-medium" />
+				</div>
+				<Button :content="buttonText" :buttonAction="searchInput" />
+			</div>
 		</Box>
 	</div>
 </template>
@@ -16,18 +19,41 @@
 	import Box from '../components/Box.vue';
 	import Button from '../components/Button.vue';
 	import Input from '../components/Input.vue';
+	import Icon from '../components/icon.vue';
 
 	export default {
 		name: 'index',
 		components: {
 			Box,
 			Button,
-			Input
+			Input,
+			Icon
 		},
 		methods: {
 			searchInput() {
-				// TODO: Implement search input
-				console.log('Search input');
+				// TODO: Search for library pass or item
+			},
+		},
+		props: {
+			direction: {
+				type: String,
+				default: 'column',
+			},
+			text: {
+				type: String,
+				default: 'Lorem Ipsum Text',
+			},
+			placeholder: {
+				type: String,
+				default: 'Placeholder',
+			},
+			icon: {
+				type: String,
+				default: 'default',
+			},
+			buttonText: {
+				type: String,
+				default: 'Button',
 			},
 		},
 	};
@@ -41,6 +67,10 @@
 		gap: 40px;
 		margin-bottom: 17px;
 
+		&.column {
+			flex-direction: column !important;
+		}
+
 		.text {
 			color: #000;
 			max-width: 245px;
@@ -52,6 +82,21 @@
 		.scan-icon {
 			width: 54px;
 			height: 53px;
+		}
+	}
+
+	.form {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 7px;
+
+		.form-input {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			gap: 10px;
 		}
 	}
 
