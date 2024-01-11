@@ -19,7 +19,7 @@
 	import Box from '../components/Box.vue';
 	import Button from '../components/Button.vue';
 	import Input from '../components/Input.vue';
-	import Icon from '../components/Icon.vue';
+	import Icon from '../components/icon.vue';
 
 	export default {
 		name: 'index',
