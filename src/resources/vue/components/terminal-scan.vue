@@ -31,8 +31,7 @@
 		},
 		methods: {
 			searchInput() {
-				// TODO: Implement search input
-				console.log('Search input');
+				// TODO: Search for library pass or item
 			},
 		},
 		props: {
