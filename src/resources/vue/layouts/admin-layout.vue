@@ -2,7 +2,7 @@
   <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px; height: 100%; background-color: #445E93">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-light text-decoration-none">
       <Icon icon="admin" size="24" color="white" />
-      <span class="fs-4">&nbsp; | Biblio Admin</span>
+      <span class="fs-4 p-1">| Biblio Admin</span>
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
