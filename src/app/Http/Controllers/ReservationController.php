@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Enums\ModifiedEnum;
 use App\Enums\ResponseStatus;
 use App\Http\Requests\ReserveRequest;
+use App\Http\Requests\SearchReservationRequest;
+use App\Models\Item;
 use App\Models\Reservation;
+use App\Models\User;
 use App\Traits\CommonTrait;
 use Illuminate\Http\Request;
+use Laravel\SerializableClosure\UnsignedSerializableClosure;
 
 class ReservationController extends Controller
 {
@@ -96,6 +100,22 @@ class ReservationController extends Controller
         return $this->CommonResponse(ResponseStatus::success,
             'Reservation deleted successfully',
             null,
+        );
+    }
+
+    public function search(SearchReservationRequest $request)
+    {
+      $validated = $request->validated();
+      $search = $validated['search'];
+
+      $item = Item::where('name', 'like', "%{$search}%")->orWhere('ISBN', 'like', "%{$search}%")->first();
+      $user = User::where('last_name', 'like', "%{$search}%")->orWhere('email', 'like', "%{$search}%")->orWhere('zip_code', 'like', "%{$search}%")->first();
+
+      $reservations = Reservation::where('item_id', $item->id)->orWhere('user_id', $user->id)->get();
+
+      return $this->CommonResponse(ResponseStatus::success,
+            'Reservation found',
+            ["reservations" => $reservations],
         );
     }
 }
