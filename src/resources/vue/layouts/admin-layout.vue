@@ -30,8 +30,8 @@
     <hr>
     <div class="dropdown">
       <a href="#" class="d-flex align-items-center link-light text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-        <strong>mdo</strong>
+        <Icon icon="full-person" size="24" color="white" />
+        <strong class="p-1">{{ userData.name }}</strong>
       </a>
       <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
         <li><a class="dropdown-item" href="#">Profile</a></li>
@@ -54,6 +54,15 @@
     name: "AdminLayout",
     components: {
       Icon,
+    },
+    props: {
+      userData: {
+        type: Object,
+        required: true,
+        default: () => ({
+          name: "John Doe",
+        }),
+      },
     },
   };
 </script>
