@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px; height: 100%; background-color: #445E93">
+  <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 15rem; height: 100%; background-color: #262d42">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-light text-decoration-none">
       <Icon icon="admin" size="24" color="white" />
       <span class="fs-4 p-1">| Biblio Admin</span>
@@ -7,7 +7,7 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link active d-flex" aria-current="page">
+        <a href="#" class="nav-link active d-flex" aria-current="page" style="background-color: #003bb2;">
           <Icon icon="full-house" size="16" color="white" />&nbsp;Home </a>
       </li>
       <li>
