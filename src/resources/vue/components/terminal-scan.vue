@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<Box :direction="direction">
-			<div class="content">
+			<div class="terminal-content">
 				<Icon v-if="text" icon="scan-icon" size="52px" />
 				<span v-if="text" class="text">{{ text }}</span>
 			</div>
@@ -60,7 +60,7 @@
 
 </script>
 <style lang="scss">
-	.content {
+	.terminal-content {
 		display: flex;
 		align-items: center;
 		flex-direction: row;

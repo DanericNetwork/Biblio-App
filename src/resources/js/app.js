@@ -5,6 +5,7 @@ import { createInertiaApp } from '@inertiajs/vue3'
 import ToastPlugin from "vue-toastification";
 import "vue-toastification/dist/index.css";
 import '@scss/global.scss';
+import VueApexCharts from "vue3-apexcharts";
 
 createInertiaApp({
   resolve: name => {
@@ -16,6 +17,7 @@ createInertiaApp({
       .use(plugin)
       .use(createPinia())
       .use(ToastPlugin)
+      .use(VueApexCharts)
       .mount(el)
   },
 })

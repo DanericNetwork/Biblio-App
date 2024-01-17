@@ -21,9 +21,8 @@
     align-items: center;
     justify-content: center;
     gap: 50px;
-    margin-top: 20px;
-    width: 98vw;
-    height: 96vh;
+    width: 100%;
+    height: 100%;
 
     .terminal-title {
       font-size: 52px;
