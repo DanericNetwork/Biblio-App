@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="admin-content">
     <AdminLayout />
     <div class="dashboard">
       <span class="dashboard-title">Dashboard</span>
@@ -117,7 +117,7 @@
   };
 </script>
 <style lang="scss">
-  .content {
+  .admin-content {
     display: flex;
     flex-direction: row;
     height: 100%;
