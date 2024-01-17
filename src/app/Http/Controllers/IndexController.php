@@ -10,7 +10,6 @@ class IndexController extends Controller
 {
     use OpenLibraryTrait;
     public function index() {
-        $this->importOpenLibrary();
         return Inertia::render('index');
     }
 }
