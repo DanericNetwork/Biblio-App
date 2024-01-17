@@ -1,37 +1,38 @@
 <template>
 <AdminLayout :user-data="{name: 'John Doe'}">
   <div class="admin-content">
+    <AdminLayout :userData="userData" />
     <div class="dashboard">
       <span class="dashboard-title">Dashboard</span>
       <div class="info-cards">
         <div class="card">
           <div class="card-body text-center">
             <span class="card-title">Items</span>
-            <p class="card-text">{{ itemCount }}</p>
+            <p class="card-text">{{ count.items }}</p>
           </div>
         </div>
         <div class="card">
           <div class="card-body text-center">
             <span class="card-title">Klanten</span>
-            <p class="card-text">{{ customerCount }}</p>
+            <p class="card-text">{{ count.customers }}</p>
           </div>
         </div>
         <div class="card">
           <div class="card-body text-center">
             <span class="card-title">Reserveringen</span>
-            <p class="card-text">{{ reservationCount }}</p>
+            <p class="card-text">{{ count.reservations }}</p>
           </div>
         </div>
         <div class="card">
           <div class="card-body text-center">
             <span class="card-title">Openstaande Facturen</span>
-            <p class="card-text">{{ openInvoiceCount }}</p>
+            <p class="card-text">{{ count.invoices }}</p>
           </div>
         </div>
       </div>
       <div class="charts">
-        <apexchart class="chart" width="95%" type="bar" :options="options" :series="series"></apexchart>
-        <apexchart class="chart" width="95%" type="bar" :options="options2" :series="series2"></apexchart>
+        <apexchart class="chart" width="95%" type="bar" :options="optionsChart1" :series="seriesChart1"></apexchart>
+        <apexchart class="chart" width="95%" type="bar" :options="optionsChart2" :series="seriesChart2"></apexchart>
       </div>
     </div>
   </div>
@@ -51,44 +52,121 @@ export default {
       default: 1234,
       required: true,
     },
-    customerCount: {
-      type: Number,
-      default: 123,
-      required: true,
+    props: {
+      userData: {
+        type: Object,
+        required: true,
+        default: () => ({
+          name: "John Doe",
+        }),
+      },
+      count: {
+        type: Object,
+        required: true,
+        default: () => ({
+          items: 1,
+          customers: 1,
+          reservations: 1,
+          openInvoices: 1,
+        }),
+      },
+      chart1: {
+        type: Object,
+        required: true,
+        default: () => ({
+          labels: [],
+          series: [],
+        }),
+      },
+      chart2: {
+        type: Object,
+        required: true,
+        default: () => ({
+          labels: [],
+          series: [],
+        }),
+      }
     },
-    reservationCount: {
-      type: Number,
-      default: 12,
-      required: true,
-    },
-    openInvoiceCount: {
-      type: Number,
-      default: 1,
-      required: true,
-    }
-  },
-  data() {
-    return {
-      options: {
-        chart: {
-          id: "item-chart",
-          background: "#f2f2f2",
-        },
-        title: {
-          text: "Items in gebruik",
-          align: "left",
-          style: {
-            color: "#000",
+    data: function () {
+      return {
+        optionsChart1: {
+          chart: {
+            id: "item-chart",
+            background: "#f2f2f2",
+          },
+          title: {
+            text: "Items in gebruik",
+            align: "center",
+          },
+          xaxis: {
+            categories: this.chart1.labels,
           },
         },
-        xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+        seriesChart1: [
+          {
+            data: this.chart1.series,
+          }
+        ],
+        optionsChart2: {
+          chart: {
+            id: "item-chart",
+            background: "#f2f2f2",
+          },
+          title: {
+            text: "Aantal nieuwe klanten per dag",
+            align: "center",
+          },
+          xaxis: {
+            categories: this.chart2.labels,
+          },
         },
-      },
-      series: [
-        {
-          name: "series-1",
-          data: [30, 40, 45, 50, 49, 60, 70, 91],
+        seriesChart2: [
+          {
+            data: this.chart2.series,
+          }
+        ],
+      };
+    },
+  };
+</script>
+<style lang="scss">
+  .admin-content {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+
+    .dashboard {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      width: 100%;
+      padding: 1.3rem;
+      background-color: #f2f2f2;
+
+      .dashboard-title {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 1.3rem;
+        color: #191a21;
+      }
+
+      .info-cards {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        gap: 1.9rem;
+        margin-bottom: 1.3rem;
+
+        .card {
+          flex: 1 1;
+          background-color: #f2f2f2;
+          color: #191a21;
+
+          .card-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+          }
         }
       ],
       options2: {
