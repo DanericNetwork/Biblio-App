@@ -7,25 +7,25 @@
         <div class="card">
           <div class="card-body text-center">
             <span class="card-title">Items</span>
-            <p class="card-text">4323</p>
+            <p class="card-text">{{ itemCount }}</p>
           </div>
         </div>
         <div class="card">
           <div class="card-body text-center">
             <span class="card-title">Klanten</span>
-            <p class="card-text">120</p>
+            <p class="card-text">{{ customerCount }}</p>
           </div>
         </div>
         <div class="card">
           <div class="card-body text-center">
             <span class="card-title">Reserveringen</span>
-            <p class="card-text">26</p>
+            <p class="card-text">{{ reservationCount }}</p>
           </div>
         </div>
         <div class="card">
           <div class="card-body text-center">
             <span class="card-title">Openstaande Facturen</span>
-            <p class="card-text">18</p>
+            <p class="card-text">{{ openInvoiceCount }}</p>
           </div>
         </div>
       </div>
@@ -43,6 +43,28 @@
     name: "AdminDashboard",
     components: {
       AdminLayout,
+    },
+    props: {
+      itemCount: {
+        type: Number,
+        default: 1234,
+        required: true,
+      },
+      customerCount: {
+        type: Number,
+        default: 123,
+        required: true,
+      },
+      reservationCount: {
+        type: Number,
+        default: 12,
+        required: true,
+      },
+      openInvoiceCount: {
+        type: Number,
+        default: 1,
+        required: true,
+      }
     },
     data: function () {
       return {
