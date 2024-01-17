@@ -31,7 +31,7 @@
       </div>
       <div class="charts">
         <apexchart class="chart" width="95%" type="bar" :options="options" :series="series"></apexchart>
-        <apexchart class="chart" width="95%" type="bar" :options="options" :series="series"></apexchart>
+        <apexchart class="chart" width="95%" type="bar" :options="options2" :series="series2"></apexchart>
       </div>
     </div>
   </div>
@@ -70,8 +70,15 @@
       return {
         options: {
           chart: {
-            id: "vuechart-example",
+            id: "item-chart",
             background: "#f2f2f2",
+          },
+          title: {
+            text: "Items in gebruik",
+            align: "left",
+            style: {
+              color: "#000",
+            },
           },
           xaxis: {
             categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
@@ -81,7 +88,29 @@
           {
             name: "series-1",
             data: [30, 40, 45, 50, 49, 60, 70, 91],
+          }
+        ],
+        options2: {
+          chart: {
+            id: "item-chart",
+            background: "#f2f2f2",
           },
+          title: {
+            text: "Aantal nieuwe klanten per dag",
+            align: "left",
+            style: {
+              color: "#000",
+            },
+          },
+          xaxis: {
+            categories: [11, 111, 1111, 1111, 1995, 1996, 1997, 1998],
+          },
+        },
+        series2: [
+          {
+            name: "series-1",
+            data: [300, 40, 25, 500, 439, 630, 370, 191],
+          }
         ],
       };
     },
