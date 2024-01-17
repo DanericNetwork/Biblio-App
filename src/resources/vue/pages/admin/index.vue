@@ -37,7 +37,7 @@
   </div>
 </template>
 <script>
-  import AdminLayout from "@/resources/vue/layouts/admin-layout.vue";
+  import AdminLayout from "@layouts/admin-layout.vue";
 
   export default {
     name: "AdminDashboard",
