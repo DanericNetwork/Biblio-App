@@ -1,37 +1,37 @@
 <template>
   <div class="admin-content">
-    <AdminLayout />
+    <AdminLayout :userData="userData" />
     <div class="dashboard">
       <span class="dashboard-title">Dashboard</span>
       <div class="info-cards">
         <div class="card">
           <div class="card-body text-center">
             <span class="card-title">Items</span>
-            <p class="card-text">{{ itemCount }}</p>
+            <p class="card-text">{{ count.items }}</p>
           </div>
         </div>
         <div class="card">
           <div class="card-body text-center">
             <span class="card-title">Klanten</span>
-            <p class="card-text">{{ customerCount }}</p>
+            <p class="card-text">{{ count.customers }}</p>
           </div>
         </div>
         <div class="card">
           <div class="card-body text-center">
             <span class="card-title">Reserveringen</span>
-            <p class="card-text">{{ reservationCount }}</p>
+            <p class="card-text">{{ count.reservations }}</p>
           </div>
         </div>
         <div class="card">
           <div class="card-body text-center">
             <span class="card-title">Openstaande Facturen</span>
-            <p class="card-text">{{ openInvoiceCount }}</p>
+            <p class="card-text">{{ count.invoices }}</p>
           </div>
         </div>
       </div>
       <div class="charts">
-        <apexchart class="chart" width="95%" type="bar" :options="options" :series="series"></apexchart>
-        <apexchart class="chart" width="95%" type="bar" :options="options2" :series="series2"></apexchart>
+        <apexchart class="chart" width="95%" type="bar" :options="optionsChart1" :series="seriesChart1"></apexchart>
+        <apexchart class="chart" width="95%" type="bar" :options="optionsChart2" :series="seriesChart2"></apexchart>
       </div>
     </div>
   </div>
@@ -45,71 +45,76 @@
       AdminLayout,
     },
     props: {
-      itemCount: {
-        type: Number,
-        default: 1234,
+      userData: {
+        type: Object,
         required: true,
+        default: () => ({
+          name: "John Doe",
+        }),
       },
-      customerCount: {
-        type: Number,
-        default: 123,
+      count: {
+        type: Object,
         required: true,
+        default: () => ({
+          items: 1,
+          customers: 1,
+          reservations: 1,
+          openInvoices: 1,
+        }),
       },
-      reservationCount: {
-        type: Number,
-        default: 12,
+      chart1: {
+        type: Object,
         required: true,
+        default: () => ({
+          labels: [],
+          series: [],
+        }),
       },
-      openInvoiceCount: {
-        type: Number,
-        default: 1,
+      chart2: {
+        type: Object,
         required: true,
+        default: () => ({
+          labels: [],
+          series: [],
+        }),
       }
     },
     data: function () {
       return {
-        options: {
+        optionsChart1: {
           chart: {
             id: "item-chart",
             background: "#f2f2f2",
           },
           title: {
             text: "Items in gebruik",
-            align: "left",
-            style: {
-              color: "#000",
-            },
+            align: "center",
           },
           xaxis: {
-            categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+            categories: this.chart1.labels,
           },
         },
-        series: [
+        seriesChart1: [
           {
-            name: "series-1",
-            data: [30, 40, 45, 50, 49, 60, 70, 91],
+            data: this.chart1.series,
           }
         ],
-        options2: {
+        optionsChart2: {
           chart: {
             id: "item-chart",
             background: "#f2f2f2",
           },
           title: {
             text: "Aantal nieuwe klanten per dag",
-            align: "left",
-            style: {
-              color: "#000",
-            },
+            align: "center",
           },
           xaxis: {
-            categories: [11, 111, 1111, 1111, 1995, 1996, 1997, 1998],
+            categories: this.chart2.labels,
           },
         },
-        series2: [
+        seriesChart2: [
           {
-            name: "series-1",
-            data: [300, 40, 25, 500, 439, 630, 370, 191],
+            data: this.chart2.series,
           }
         ],
       };
