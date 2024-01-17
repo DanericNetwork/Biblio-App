@@ -2,6 +2,7 @@
 
 namespace App\Traits\Imports;
 
+use App\Models\Author;
 use App\Models\Item;
 use App\Models\User;
 use App\Traits\CommonLibraryTrait;
@@ -34,30 +35,47 @@ trait OpenLibraryTrait
     }
 
     private function importBook($book) {
-        Item::create([
-            'identifier' => $this->generateValidItemIdentifier(),
-            'type' => 'book',
-            'name' => $book['title'],
-            'description' => "Dit boek is geschreven door {$book['author_name'][0]} en is uitgegeven in {$book['first_publish_year']}.",
-            'category' => 1,
-            'ISBN' => $book['isbn'][0],
-            'rating' => 1,
-            'borrowing_time' => 30,
-            'modified_kind' => 'I',
-            'modified_user' => User::where('email', 'superadmin@biblio.nl')->first()->id,
+      $authorName = !isset($book['author_name'][0]) ? $book['publisher'][0] : $book['author_name'][0];
+
+      if (!Author::where('name', $authorName)->exists()) {
+        $author = Author::create([
+          'name' => $authorName,
+          'modified_kind' => 'I',
+          'modified_user' => User::where('email', 'superadmin@biblio.nl')->first()->id,
         ]);
+      } else {
+        $author = Author::where('name', $authorName)->first();
+      }
+
+      Item::create([
+        'identifier' => $this->generateValidItemIdentifier(),
+        'type' => 'book',
+        'name' => $book['title'],
+        'author_id' => $author->id,
+        'description' => "Dit boek is geschreven door {$authorName} en is uitgegeven in {$book['first_publish_year']}.",
+        'category' => 1,
+        'ISBN' => $book['isbn'][0] ?? "N/A",
+        'rating' => 1,
+        'borrowing_time' => 30,
+        'modified_kind' => 'I',
+        'modified_user' => User::where('email', 'superadmin@biblio.nl')->first()->id,
+      ]);
     }
 
     private function getData($offset)
     {
-        $baseUrl = "https://openlibrary.org/search.json?q=language%3Adut&sort=new&lang=nl&offset=" . $offset;
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $baseUrl);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        $response = curl_exec($curl);
-        curl_close($curl);
+      $baseUrl = "https://openlibrary.org/search.json?q=language%3Adut&sort=new&lang=nl&offset=" . $offset;
 
-        $response = json_decode($response, true);
-        return $response['docs'];
+      $curl = curl_init();
+      curl_setopt($curl, CURLOPT_URL, $baseUrl);
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+      $response = curl_exec($curl);
+
+      curl_close($curl);
+
+      $response = json_decode($response, true);
+
+      return $response['docs'];
     }
 }
