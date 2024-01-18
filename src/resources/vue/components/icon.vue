@@ -11,7 +11,6 @@ export default {
   },
   computed: {
     iconSVG() {
-      console.log(this.icon);
       switch (this.icon) {
         case "full-star":
           return `<svg width="${this.size || 24}" height="${
