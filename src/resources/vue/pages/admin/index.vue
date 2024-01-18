@@ -1,41 +1,40 @@
 <template>
-<AdminLayout :user-data="{name: 'John Doe'}">
-  <div class="admin-content">
-    <AdminLayout :userData="userData" />
-    <div class="dashboard">
-      <span class="dashboard-title">Dashboard</span>
-      <div class="info-cards">
-        <div class="card">
-          <div class="card-body text-center">
-            <span class="card-title">Items</span>
-            <p class="card-text">{{ count.items }}</p>
+  <AdminLayout :user-data="{name: 'John Doe'}">
+    <div class="admin-content">
+      <div class="dashboard">
+        <span class="dashboard-title">Dashboard</span>
+        <div class="info-cards">
+          <div class="card">
+            <div class="card-body text-center">
+              <span class="card-title">Items</span>
+              <p class="card-text">{{ count.items }}</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body text-center">
+              <span class="card-title">Klanten</span>
+              <p class="card-text">{{ count.customers }}</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body text-center">
+              <span class="card-title">Reserveringen</span>
+              <p class="card-text">{{ count.reservations }}</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body text-center">
+              <span class="card-title">Openstaande Facturen</span>
+              <p class="card-text">{{ count.invoices }}</p>
+            </div>
           </div>
         </div>
-        <div class="card">
-          <div class="card-body text-center">
-            <span class="card-title">Klanten</span>
-            <p class="card-text">{{ count.customers }}</p>
-          </div>
+        <div class="charts">
+          <apexchart class="chart" width="95%" type="bar" :options="optionsChart1" :series="seriesChart1"></apexchart>
+          <apexchart class="chart" width="95%" type="bar" :options="optionsChart2" :series="seriesChart2"></apexchart>
         </div>
-        <div class="card">
-          <div class="card-body text-center">
-            <span class="card-title">Reserveringen</span>
-            <p class="card-text">{{ count.reservations }}</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-body text-center">
-            <span class="card-title">Openstaande Facturen</span>
-            <p class="card-text">{{ count.invoices }}</p>
-          </div>
-        </div>
-      </div>
-      <div class="charts">
-        <apexchart class="chart" width="95%" type="bar" :options="optionsChart1" :series="seriesChart1"></apexchart>
-        <apexchart class="chart" width="95%" type="bar" :options="optionsChart2" :series="seriesChart2"></apexchart>
       </div>
     </div>
-  </div>
   </AdminLayout>
 </template>
 
@@ -47,12 +46,6 @@ export default {
     AdminLayout,
   },
   props: {
-    itemCount: {
-      type: Number,
-      default: 1234,
-      required: true,
-    },
-    props: {
       userData: {
         type: Object,
         required: true,
@@ -127,73 +120,7 @@ export default {
         ],
       };
     },
-  };
-</script>
-<style lang="scss">
-  .admin-content {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-
-    .dashboard {
-      display: flex;
-      flex-direction: column;
-      align-items: start;
-      width: 100%;
-      padding: 1.3rem;
-      background-color: #f2f2f2;
-
-      .dashboard-title {
-        font-size: 2rem;
-        font-weight: bold;
-        margin-bottom: 1.3rem;
-        color: #191a21;
-      }
-
-      .info-cards {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        justify-content: space-between;
-        gap: 1.9rem;
-        margin-bottom: 1.3rem;
-
-        .card {
-          flex: 1 1;
-          background-color: #f2f2f2;
-          color: #191a21;
-
-          .card-title {
-            font-size: 1.3rem;
-            font-weight: bold;
-          }
-        }
-      ],
-      options2: {
-        chart: {
-          id: "item-chart",
-          background: "#f2f2f2",
-        },
-        title: {
-          text: "Aantal nieuwe klanten per dag",
-          align: "left",
-          style: {
-            color: "#000",
-          },
-        },
-        xaxis: {
-          categories: [11, 111, 1111, 1111, 1995, 1996, 1997, 1998],
-        },
-      },
-      series2: [
-        {
-          name: "series-1",
-          data: [300, 40, 25, 500, 439, 630, 370, 191],
-        }
-      ],
-    };
   }
-}
 </script>
 
 <style lang="scss">
