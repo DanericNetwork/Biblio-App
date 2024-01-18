@@ -78,6 +78,10 @@
 <style lang="scss" scoped>
   @import url("https://bootswatch.com/5/lumen/bootstrap.css");
 
+  .active {
+    background-color: #003bb2 !important;
+  }
+
   .slot {
     display: flex;
     width: 100%;
