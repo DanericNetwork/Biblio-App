@@ -133,7 +133,6 @@
       align-items: start;
       width: 100%;
       padding: 1.3rem;
-      background-color: #f2f2f2;
 
       .dashboard-title {
         font-size: 2rem;
