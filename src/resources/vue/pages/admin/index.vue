@@ -1,39 +1,40 @@
 <template>
   <div class="admin-content">
-    <AdminLayout />
-    <div class="dashboard">
-      <span class="dashboard-title">Dashboard</span>
-      <div class="info-cards">
-        <div class="card">
-          <div class="card-body text-center">
-            <span class="card-title">Items</span>
-            <p class="card-text">{{ itemCount }}</p>
+    <AdminLayout>
+      <div class="dashboard">
+        <span class="dashboard-title">Dashboard</span>
+        <div class="info-cards">
+          <div class="card">
+            <div class="card-body text-center">
+              <span class="card-title">Items</span>
+              <p class="card-text">{{ itemCount }}</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body text-center">
+              <span class="card-title">Klanten</span>
+              <p class="card-text">{{ customerCount }}</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body text-center">
+              <span class="card-title">Reserveringen</span>
+              <p class="card-text">{{ reservationCount }}</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body text-center">
+              <span class="card-title">Openstaande Facturen</span>
+              <p class="card-text">{{ openInvoiceCount }}</p>
+            </div>
           </div>
         </div>
-        <div class="card">
-          <div class="card-body text-center">
-            <span class="card-title">Klanten</span>
-            <p class="card-text">{{ customerCount }}</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-body text-center">
-            <span class="card-title">Reserveringen</span>
-            <p class="card-text">{{ reservationCount }}</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-body text-center">
-            <span class="card-title">Openstaande Facturen</span>
-            <p class="card-text">{{ openInvoiceCount }}</p>
-          </div>
+        <div class="charts">
+          <apexchart class="chart" width="95%" type="bar" :options="options" :series="series"></apexchart>
+          <apexchart class="chart" width="95%" type="bar" :options="options2" :series="series2"></apexchart>
         </div>
       </div>
-      <div class="charts">
-        <apexchart class="chart" width="95%" type="bar" :options="options" :series="series"></apexchart>
-        <apexchart class="chart" width="95%" type="bar" :options="options2" :series="series2"></apexchart>
-      </div>
-    </div>
+    </AdminLayout>
   </div>
 </template>
 <script>
@@ -128,7 +129,6 @@
       align-items: start;
       width: 100%;
       padding: 1.3rem;
-      background-color: #f2f2f2;
 
       .dashboard-title {
         font-size: 2rem;
