@@ -7,7 +7,7 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link active d-flex" aria-current="page" style="background-color: #003bb2;">
+        <a href="/admin" :class="{ 'active': $page.url === ('/admin'), 'link-light': $page.url !== ('/admin') }" class="nav-link d-flex" aria-current="page">
           <Icon icon="full-house" size="16" color="white" />&nbsp;Home
         </a>
       </li>
