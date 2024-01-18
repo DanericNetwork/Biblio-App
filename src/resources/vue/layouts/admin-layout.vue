@@ -12,22 +12,22 @@
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-light d-flex">
+        <a href="/admin/items" :class="{ 'active': $page.url.startsWith('/admin/items'), 'link-light': !$page.url.startsWith('/admin/items') }" class="nav-link d-flex"> <!-- link-light -->
           <Icon icon="full-archive" size="16" color="white" /> &nbsp;Items
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-light d-flex">
+        <a href="/admin/reservations" :class="{ 'active': $page.url.startsWith('/admin/reservations'), 'link-light': !$page.url.startsWith('/admin/reservations') }" class="nav-link link-light d-flex">
           <Icon icon="list" size="16" color="white" /> &nbsp;Reserveringen
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-light d-flex">
+        <a href="/admin/users" :class="{ 'active': $page.url.startsWith('/admin/users'), 'link-light': !$page.url.startsWith('/admin/users') }" class="nav-link link-light d-flex">
           <Icon icon="full-people" size="16" color="white" /> &nbsp;Klanten
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-light d-flex">
+        <a href="/admin/invoices" :class="{ 'active': $page.url.startsWith('/admin/invoices'), 'link-light': !$page.url.startsWith('/admin/invoices') }" class="nav-link link-light d-flex">
           <Icon icon="full-euro" size="16" color="white" /> &nbsp;Facturen
         </a>
       </li>
