@@ -80,6 +80,21 @@ export default {
               description: "Description 1.3",
               warning: true,
             },
+            {
+              content: "Content 1.3",
+              description: "Description 1.3",
+              warning: true,
+            },
+            {
+              content: "Content 1.3",
+              description: "Description 1.3",
+              warning: true,
+            },
+            {
+              content: "Content 1.3",
+              description: "Description 1.3",
+              warning: true,
+            },
           ],
         },
         {
@@ -175,9 +190,11 @@ export default {
 }
 
 .tab-content-container {
-  flex: 1;
-  display: flex;
+ flex: 1;
+ display: flex;
+  max-height: 90vh;
   overflow-y: auto;
+   background-color: #e57e1f;
 }
 
 .tab-content {
@@ -187,7 +204,6 @@ export default {
   padding: 20px;
   height: 90vh;
   background-color: #e57e1f;
-  border: 1px solid #ccc;
   border-radius: 0 0 5px 5px;
   box-sizing: border-box;
 }

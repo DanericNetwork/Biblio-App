@@ -29,9 +29,6 @@ export default {
     Input,
     Icon,
   },
-  created() {
-    // console.log(this.icon);
-  },
   methods: {
     searchInput() {
       // TODO: Search for library pass or item

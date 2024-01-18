@@ -18,6 +18,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index']);
 
-Route::get('/dashboard', [dashboardTerminalController::class, 'dashboard']);
+Route::get('/dashboard', [DashboardTerminalController::class, 'index']);
 
 Route::post('/auth', [SessionController::class, 'auth'])->name('auth');

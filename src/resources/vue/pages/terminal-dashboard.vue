@@ -18,7 +18,6 @@
         placeholder="101010101"
       />
     </div>
-
     <div class="tabs-container">
       <Tabs class="tabs" />
     </div>
@@ -69,9 +68,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+	gap: 50px;
 }
 
-.Box2 {
-  margin-top: 50px;
-}
 </style>

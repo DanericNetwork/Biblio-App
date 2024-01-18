@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class dashboardTerminalController extends Controller
+class DashboardTerminalController extends Controller
 {
-    public function dashboard() {
-        return Inertia::render('terminal-dashboard');
+    public function index() {
+        return Inertia::render('Terminal-dashboard');
     }
 }
