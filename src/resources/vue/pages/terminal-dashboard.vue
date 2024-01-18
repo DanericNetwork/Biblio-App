@@ -1,12 +1,26 @@
 <template>
   <div class="main-container">
     <div class="boxes">
-      <Box></Box>
-      <Box></Box>
+      <TerminalScan
+        class="Box1"
+        text="Zoek een item"
+        buttonText="Zoek"
+        icon="search-icon"
+        direction="column"
+        placeholder="Harry potter"
+      />
+      <TerminalScan
+        class="Box2"
+        text="Scan een artikel om te lenen"
+        buttonText="Zoek"
+        icon="scan-icon"
+        direction="column"
+        placeholder="101010101"
+      />
     </div>
 
     <div class="tabs-container">
-      <Tabs class="tabs"></Tabs>
+      <Tabs class="tabs" />
     </div>
   </div>
 </template>
@@ -15,12 +29,14 @@
 import Tabs from "../components/Tabs.vue";
 import ItemCard from "../components/ItemCard.vue";
 import Box from "../components/Box.vue";
+import TerminalScan from "../components/terminal-scan.vue";
 
 export default {
   components: {
     Tabs,
     ItemCard,
     Box,
+    TerminalScan,
   },
 };
 </script>
@@ -53,5 +69,9 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.Box2 {
+  margin-top: 50px;
 }
 </style>

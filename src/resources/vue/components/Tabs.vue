@@ -11,7 +11,7 @@
         {{ tab.name }}
       </li>
     </ul>
-    <div class="tab-height">
+    <div class="tab-content-container">
       <div
         v-for="(tab, index) in tabs"
         :key="index"
@@ -43,7 +43,7 @@ export default {
       activeTab: 0,
       tabs: [
         {
-          name: "Tab 1",
+          name: "In bezit",
           items: [
             {
               content: "Content 1.1",
@@ -83,7 +83,7 @@ export default {
           ],
         },
         {
-          name: "Tab 2",
+          name: "Verleden",
           items: [
             {
               content: "Content 2.1",
@@ -98,7 +98,7 @@ export default {
           ],
         },
         {
-          name: "Tab 3",
+          name: "Boetes",
           items: [
             {
               content: "Content 3.1",
@@ -113,7 +113,7 @@ export default {
           ],
         },
         {
-          name: "Tab 4",
+          name: "Reservering",
           items: [
             {
               content: "Content 4.1",
@@ -174,18 +174,27 @@ export default {
   border-bottom: 1px solid #e57e1f;
 }
 
-.tab-content {
+.tab-content-container {
   flex: 1;
-  display: none;
-  padding: 20px;
-  background-color: #e57e1f;
-  border: 1px solid #ccc;
-  border-radius: 0 0 5px 5px;
+  display: flex;
   overflow-y: auto;
 }
 
+.tab-content {
+  flex: 1;
+  min-height: 0;
+  display: none;
+  padding: 20px;
+  height: 90vh;
+  background-color: #e57e1f;
+  border: 1px solid #ccc;
+  border-radius: 0 0 5px 5px;
+  box-sizing: border-box;
+}
+
 .tab-content.active {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
 .tab:nth-child(1),
@@ -199,9 +208,5 @@ export default {
   margin-bottom: 10px;
   width: 95%;
   height: 50px;
-}
-.tab-height {
-  height: 100%;
-  overflow-y: auto;
 }
 </style>
