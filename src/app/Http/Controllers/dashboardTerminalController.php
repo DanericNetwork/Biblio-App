@@ -8,6 +8,6 @@ use Inertia\Inertia;
 class DashboardTerminalController extends Controller
 {
     public function index() {
-        return Inertia::render('Terminal-dashboard');
+        return Inertia::render('terminal-dashboard');
     }
 }
