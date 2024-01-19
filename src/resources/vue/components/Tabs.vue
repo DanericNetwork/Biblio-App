@@ -21,7 +21,7 @@
         <item-card
           v-for="(item, itemIndex) in tab.items"
           :key="itemIndex"
-          :tab="tab"
+          :item="tab.items[itemIndex]"
           :itemIndex="itemIndex"
         />
       </div>

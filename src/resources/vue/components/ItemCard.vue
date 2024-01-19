@@ -3,11 +3,11 @@
     <div class="left">
       <Icon class="book-icon" icon="book" size="90" color="white" />
       <div class="info">
-        <p>{{ tab.items[itemIndex].content }}</p>
-        <p>{{ tab.items[itemIndex].description }}</p>
+        <p>{{ item.content }}</p>
+        <p>{{ item.description }}</p>
       </div>
     </div>
-    <div v-if="tab.items[itemIndex].warning" class="right">
+    <div v-if="item.warning" class="right">
       <Icon icon="warning" size="35" />
     </div>
   </div>
@@ -19,7 +19,7 @@ import Icon from "./icon.vue";
 export default {
   name: "ItemCard",
   props: {
-    tab: Object,
+    item: Object,
     itemIndex: Number,
   },
   components: {
