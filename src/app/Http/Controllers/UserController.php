@@ -71,8 +71,11 @@ class UserController extends Controller
     $users = User::where('last_name', 'like', "%{$search}%")
       ->orWhere('first_name', 'like', "%{$search}%")
       ->orWhere('email', 'like', "%{$search}%")
-      ->get();
-
+      ->orWhere('id', 'like', "%{$search}%")
+      ->orWhereHas('libraryPasses', function($query) use ($search) {
+        $query->where('barcode', 'like', "%{$search}%");
+      })
+      ->get(); 
 
     return $this->CommonResponse(
       ResponseStatus::success,
