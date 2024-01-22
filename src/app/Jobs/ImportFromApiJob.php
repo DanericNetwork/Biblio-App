@@ -41,7 +41,7 @@ class ImportFromApiJob implements ShouldQueue
 
         // replace with switch statement once more sources are added
         if ($this->source == ImportSources::OPEN_LIBRARY) {
-            $this->importOpenLibrary($this->query);
+            $this->importOpenLibrary();
         }
     }
 }
