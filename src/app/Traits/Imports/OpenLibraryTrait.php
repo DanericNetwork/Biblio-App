@@ -10,7 +10,13 @@ use App\Traits\CommonLibraryTrait;
 trait OpenLibraryTrait
 {
     use CommonLibraryTrait;
-    public function importOpenLibrary($tries = 3) {
+
+  /**
+   * @param $tries int The amount of times the import should be tried.
+   * @return void Imports books from OpenLibrary.
+   */
+    public function importOpenLibrary(int $tries = 3): void
+    {
         if ($tries < 1) $tries = 3;
 
         $maxOffset = (int) ceil(100 * $tries / 100) * 100;
