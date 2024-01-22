@@ -3,7 +3,7 @@
     <div class="left">
       <Icon class="book-icon" icon="book" size="90" color="white" />
       <div class="info">
-        <p>{{ item.content }}</p>
+        <p>{{ item.title }}</p>
         <p>{{ item.description }}</p>
       </div>
     </div>

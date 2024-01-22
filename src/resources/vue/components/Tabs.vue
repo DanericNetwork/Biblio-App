@@ -46,52 +46,52 @@ export default {
           name: "In bezit",
           items: [
             {
-              content: "Content 1.1",
+              title: "Content 1.1",
               description: "Description 1.1",
               warning: true,
             },
             {
-              content: "Content 1.2",
+              title: "Content 1.2",
               description: "Description 1.2",
               warning: false,
             },
             {
-              content: "Content 1.3",
+              title: "Content 1.3",
               description: "Description 1.3",
               warning: true,
             },
             {
-              content: "Content 1.3",
+              title: "Content 1.3",
               description: "Description 1.3",
               warning: true,
             },
             {
-              content: "Content 1.3",
+              title: "Content 1.3",
               description: "Description 1.3",
               warning: true,
             },
             {
-              content: "Content 1.3",
+              title: "Content 1.3",
               description: "Description 1.3",
               warning: true,
             },
             {
-              content: "Content 1.3",
+              title: "Content 1.3",
               description: "Description 1.3",
               warning: true,
             },
             {
-              content: "Content 1.3",
+              title: "Content 1.3",
               description: "Description 1.3",
               warning: true,
             },
             {
-              content: "Content 1.3",
+              title: "Content 1.3",
               description: "Description 1.3",
               warning: true,
             },
             {
-              content: "Content 1.3",
+              title: "Content 1.3",
               description: "Description 1.3",
               warning: true,
             },
@@ -101,12 +101,12 @@ export default {
           name: "Verleden",
           items: [
             {
-              content: "Content 2.1",
+              title: "Content 2.1",
               description: "Description 2.1",
               warning: false,
             },
             {
-              content: "Content 2.2",
+              title: "Content 2.2",
               description: "Description 2.2",
               warning: true,
             },
@@ -116,12 +116,12 @@ export default {
           name: "Boetes",
           items: [
             {
-              content: "Content 3.1",
+              title: "Content 3.1",
               description: "Description 3.1",
               warning: true,
             },
             {
-              content: "Content 3.2",
+              title: "Content 3.2",
               description: "Description 3.2",
               warning: false,
             },
@@ -131,12 +131,12 @@ export default {
           name: "Reservering",
           items: [
             {
-              content: "Content 4.1",
+              title: "Content 4.1",
               description: "Description 4.1",
               warning: false,
             },
             {
-              content: "Content 4.2",
+              title: "Content 4.2",
               description: "Description 4.2",
               warning: true,
             },
