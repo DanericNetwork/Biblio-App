@@ -59,7 +59,6 @@ export default {
     userData: {
       type: Object,
       required: true,
-      default: () => ({}),
     },
   },
   components: {
