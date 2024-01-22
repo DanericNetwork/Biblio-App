@@ -8,7 +8,7 @@
         @click="changeTab(index)"
         :class="{ active: activeTab === index }"
       >
-        {{ tab.name }}
+       <span class="tab-name"> {{ tab.name }}</span>
       </li>
     </ul>
     <div class="tab-content-container">
@@ -175,8 +175,7 @@ export default {
 .tab {
   padding: 10px;
   cursor: pointer;
-  background-color: grey;
-  border: 1px solid grey;
+  background-color: #D9D9D9;
   border-radius: 5px 5px 0 0;
 }
 
@@ -224,5 +223,11 @@ export default {
   margin-bottom: 10px;
   width: 95%;
   height: 50px;
+}
+
+.tab-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #000;
 }
 </style>

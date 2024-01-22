@@ -63,8 +63,7 @@ export default {
   margin-top: 0;
   padding: 10px;
   cursor: pointer;
-  background-color: grey;
-  border: 1px solid grey;
+  background-color: #D9D9D9;  
   border-radius: 5px 5px 0 0;
 }
 
