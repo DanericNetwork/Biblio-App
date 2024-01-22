@@ -25,10 +25,10 @@
 </template>
 
 <script>
-import Tabs from "../components/Tabs.vue";
-import ItemCard from "../components/ItemCard.vue";
-import Box from "../components/Box.vue";
-import TerminalScan from "../components/terminal-scan.vue";
+import Tabs from "../../components/Tabs.vue";
+import ItemCard from "../../components/ItemCard.vue";
+import Box from "../../components/Box.vue";
+import TerminalScan from "../../components/terminal-scan.vue";
 
 export default {
   components: {
@@ -41,6 +41,10 @@ export default {
 </script>
 
 <style lang="scss">
+.body {
+  height: 100vh;
+}
+
 .main-container {
   width: 100%;
   height: 100%;
@@ -52,14 +56,16 @@ export default {
 .tabs-container {
   width: 50%;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
-.tabs {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.tab {
+  margin-top: 0;
+  padding: 10px;
+  cursor: pointer;
+  background-color: grey;
+  border: 1px solid grey;
+  border-radius: 5px 5px 0 0;
 }
 
 .boxes {
@@ -68,7 +74,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-	gap: 50px;
+  gap: 50px;
 }
 
 </style>

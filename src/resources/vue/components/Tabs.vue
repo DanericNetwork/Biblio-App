@@ -157,10 +157,10 @@ export default {
 .tabs-main-div {
   max-width: 100%;
   margin: 0 auto;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  height: 100vh;
 }
 
 .tabs {
@@ -190,11 +190,11 @@ export default {
 }
 
 .tab-content-container {
- flex: 1;
- display: flex;
-  max-height: 90vh;
-  overflow-y: auto;
-   background-color: #e57e1f;
+  flex: 1;
+  display: flex;
+  height: 100%;
+  overflow-y: scroll;
+  background-color: #e57e1f;
 }
 
 .tab-content {
@@ -202,7 +202,7 @@ export default {
   min-height: 0;
   display: none;
   padding: 20px;
-  height: 90vh;
+  height: 100vh;
   background-color: #e57e1f;
   border-radius: 0 0 5px 5px;
   box-sizing: border-box;
