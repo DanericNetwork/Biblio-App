@@ -1,5 +1,5 @@
 <template>
-  <AdminLayout :user-data="{name: 'John Doe'}">
+  <AdminLayout :user-data="userData">
     <div class="admin-content">
       <div class="dashboard">
         <span class="dashboard-title">Dashboard</span>
@@ -49,18 +49,15 @@ export default {
       userData: {
         type: Object,
         required: true,
-        default: () => ({
-          name: "John Doe",
-        }),
       },
       count: {
         type: Object,
         required: true,
         default: () => ({
-          items: 1,
-          customers: 1,
-          reservations: 1,
-          openInvoices: 1,
+          items: 0,
+          customers: 0,
+          reservations: 0,
+          openInvoices: 0,
         }),
       },
       chart1: {
