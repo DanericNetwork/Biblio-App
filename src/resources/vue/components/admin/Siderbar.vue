@@ -37,7 +37,7 @@
       <div class="dropdown">
         <a href="#" class="d-flex align-items-center link-light text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
           <Icon icon="full-person" size="24" color="white" />
-          <strong class="p-1">{{ userData.name }}</strong>
+          <strong class="p-1">{{ name }}</strong>
         </a>
         <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
           <li><a class="dropdown-item" href="#">Profile</a></li>
@@ -63,6 +63,9 @@ export default {
   },
   components: {
     Icon
+  },
+  created() {
+    this.name = this.userData.first_name + " " + this.userData.last_name.charAt(0) + "."
   },
 }
 </script>
