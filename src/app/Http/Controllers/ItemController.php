@@ -40,7 +40,7 @@ class ItemController extends Controller
             'type' => $validated['type'],
             'name' => $validated['name'],
             'description' => $validated['description'],
-            'category' => $validated['category'],
+            'category_id' => $validated['category_id'],
             'ISBN' => $validated['ISBN'],
             'rating' => $validated['rating'],
             'borrowing_time' => $validated['borrowing_time'],
@@ -69,7 +69,7 @@ class ItemController extends Controller
             'type' => $validated['type'],
             'name' => $validated['name'],
             'description' => $validated['description'],
-            'category' => $validated['category'],
+            'category_id' => $validated['category_id'],
             'ISBN' => $validated['ISBN'],
             'rating' => $validated['rating'],
             'borrowing_time' => $validated['borrowing_time'],
@@ -103,7 +103,6 @@ class ItemController extends Controller
 
       $items = Item::where('name', 'like', "%{$search}%")
         ->orWhere('description', 'like', "%{$search}%")
-        ->orWhere('category', 'like', "%{$search}%")
         ->orWhere('ISBN', 'like', "%{$search}%")
         ->get();
 
