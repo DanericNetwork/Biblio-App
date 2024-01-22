@@ -19,5 +19,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [IndexController::class, 'index']);
 
 Route::get('/admin', [AdminController::class, 'index']);
+Route::get('/admin/items', [AdminController::class, 'items']);
 
 Route::post('/auth', [SessionController::class, 'auth'])->name('auth');

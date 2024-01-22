@@ -7,6 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class ItemAgeRating extends Model
 {
-    use HasFactory;
     protected $guarded = [];
 }
