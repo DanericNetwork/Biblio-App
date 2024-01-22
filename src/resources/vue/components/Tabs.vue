@@ -195,6 +195,18 @@ export default {
   background-color: #e57e1f;
 }
 
+.tab-content-container::-webkit-scrollbar-thumb {
+    background: #e57e1f;
+  }
+
+  .tab-content-container::-webkit-scrollbar-track {
+    background: #D9D9D9;
+  }
+
+  .tab-content-container::-webkit-scrollbar {
+    width: 12px;
+  }
+
 .tab-content {
   flex: 1;
   min-height: 0;
