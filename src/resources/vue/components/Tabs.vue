@@ -176,7 +176,6 @@ export default {
   padding: 10px;
   cursor: pointer;
   background-color: #D9D9D9;
-  border-radius: 5px 5px 0 0;
 }
 
 .tab:hover {
@@ -230,4 +229,6 @@ export default {
   font-weight: 700;
   color: #000;
 }
+
+
 </style>
