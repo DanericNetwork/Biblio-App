@@ -55,7 +55,13 @@
 import Icon from "@/icon.vue"
 export default {
   name: "AdminSidebar",
-  props: ["userData"],
+  props: {
+    userData: {
+      type: Object,
+      required: true,
+      default: () => ({}),
+    },
+  },
   components: {
     Icon
   },
