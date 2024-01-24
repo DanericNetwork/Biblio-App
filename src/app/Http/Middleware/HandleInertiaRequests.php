@@ -3,41 +3,64 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
 {
-    /**
-     * The root template that's loaded on the first page visit.
-     *
-     * @see https://inertiajs.com/server-side-setup#root-template
-     * @var string
-     */
-    protected $rootView = 'app';
+	/**
+	 * The root template that's loaded on the first page visit.
+	 *
+	 * @see https://inertiajs.com/server-side-setup#root-template
+	 * @var string
+	 */
+	protected $rootView = 'app';
 
-    /**
-     * Determines the current asset version.
-     *
-     * @see https://inertiajs.com/asset-versioning
-     * @param  \Illuminate\Http\Request  $request
-     * @return string|null
-     */
-    public function version(Request $request): ?string
-    {
-        return parent::version($request);
-    }
+	/**
+	 * Determines the current asset version.
+	 *
+	 * @see https://inertiajs.com/asset-versioning
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return string|null
+	 */
+	public function version(Request $request): ?string
+	{
+		return parent::version($request);
+	}
 
-    /**
-     * Defines the props that are shared by default.
-     *
-     * @see https://inertiajs.com/shared-data
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function share(Request $request): array
-    {
-        return array_merge(parent::share($request), [
-            //
-        ]);
-    }
+	/**
+	 * Defines the props that are shared by default.
+	 *
+	 * @see https://inertiajs.com/shared-data
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return array
+	 */
+	public function share(Request $request): array
+	{
+		$user = auth()->user();
+
+		if (!$user) {
+			return array_merge(parent::share($request), [
+				//
+			]);
+		}
+
+		return array_merge(parent::share($request), [
+			'userData' => fn() => $request->user()
+				? $request->user()->only('id', 'first_name', 'last_name', 'email')
+				: null,
+		]);
+	}
+
+	// handle
+	public function handle($request, \Closure $next)
+	{
+		$user = auth()->user();
+
+		if (!$user && $request->path() !== '/') {
+			return Inertia::location('/');
+		};
+
+		return parent::handle($request, $next);
+	}
 }
