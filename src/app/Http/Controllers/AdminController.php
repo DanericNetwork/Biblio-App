@@ -16,8 +16,7 @@ class AdminController extends Controller
     $userData = auth()->user();
 
     if (!$userData) {
-      $userData = User::find(1);
-      auth()->login($userData);
+      Inertia::location('/');
     }
 
     // Get the Statistics
