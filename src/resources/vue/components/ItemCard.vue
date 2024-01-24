@@ -37,7 +37,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 13px;
+  padding: 4px;
 
   .left {
     display: flex;
@@ -52,7 +52,7 @@ export default {
 
       p {
         color: #fff;
-        font-size: 32px;
+        font-size: 22px;
         font-family: "Outfit";
         font-weight: 700;
       }
@@ -61,7 +61,7 @@ export default {
 
   .right {
     display: flex;
-    align-items: flex-start;
+    margin-right: 10px;
     height: 100%;
   }
   .book-icon {
