@@ -16,7 +16,7 @@ class AdminController extends Controller
     $userData = auth()->user();
 
     if (!$userData) {
-      Inertia::location('/');
+      return redirect('/');
     }
 
     // Get the Statistics
