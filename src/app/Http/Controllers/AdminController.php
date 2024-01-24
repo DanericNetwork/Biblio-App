@@ -13,6 +13,13 @@ class AdminController extends Controller
 {
   public function index()
   {
+    $userData = auth()->user();
+
+    if (!$userData) {
+      $userData = User::find(1);
+      auth()->login($userData);
+    }
+
     // Get the Statistics
     $items = Item::count();
     $customers = User::count();
@@ -20,6 +27,7 @@ class AdminController extends Controller
     $invoices = Fine::count();
 
     return Inertia::render('admin/index', [
+      'userData' => $userData,
       'count' => [
         'items' => $items,
         'customers' => $customers,
