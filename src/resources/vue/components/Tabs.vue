@@ -232,8 +232,7 @@ export default {
 
 .item-card {
   margin-bottom: 10px;
-  width: 95%;
-  height: 50px;
+  max-height: 70px;
 }
 
 .tab-name {
