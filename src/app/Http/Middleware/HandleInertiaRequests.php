@@ -37,30 +37,8 @@ class HandleInertiaRequests extends Middleware
 	 */
 	public function share(Request $request): array
 	{
-		$user = auth()->user();
-
-		if (!$user) {
-			return array_merge(parent::share($request), [
-				//
-			]);
-		}
-
 		return array_merge(parent::share($request), [
-			'userData' => fn() => $request->user()
-				? $request->user()->only('id', 'first_name', 'last_name', 'email')
-				: null,
+			//
 		]);
-	}
-
-	// handle
-	public function handle($request, \Closure $next)
-	{
-		$user = auth()->user();
-
-		if (!$user && $request->path() !== '/') {
-			return Inertia::location('/');
-		};
-
-		return parent::handle($request, $next);
 	}
 }
