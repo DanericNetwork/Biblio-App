@@ -20,8 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [IndexController::class, 'index']);
 
 
-Route::get('/admin', [AdminController::class, 'index']);
-Route::get('/admin/items', [AdminController::class, 'items']);
+Route::get('/admin', [AdminController::class, 'index'])->middleware('admin');
+Route::get('/admin/items', [AdminController::class, 'items'])->middleware('admin');
 Route::get('/terminal', [AppController::class, 'index']);
 
 Route::post('/auth', [SessionController::class, 'auth'])->name('auth');

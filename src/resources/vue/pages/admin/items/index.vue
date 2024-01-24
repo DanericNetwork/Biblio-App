@@ -1,5 +1,5 @@
 <template>
-  <AdminLayout >
+  <AdminLayout :user-data="userData" >
     <div class="content">
       <div class="header">
         <h1>Items</h1>
@@ -39,6 +39,7 @@ import AdminLayout from "@layouts/admin-layout.vue";
 import Pagination from "@components/admin/pagination.vue";
 import { computed } from 'vue'
 import { usePage } from '@inertiajs/vue3'
+
 export default {
   name: "admin-items-index",
   components: {
@@ -48,7 +49,9 @@ export default {
   setup() {
     const page = usePage();
     const items = computed(() => page.props.items);
-    return {items};
+    const userData = computed(() => page.props.user);
+
+    return {items, userData};
   }
 }
 </script>
