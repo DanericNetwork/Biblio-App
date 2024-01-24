@@ -40,19 +40,21 @@
 
 <script>
 import AdminLayout from "../../layouts/admin-layout.vue";
+import { computed } from 'vue'
+import { usePage } from '@inertiajs/vue3'
+
 export default {
   name: "admin-index",
   components: {
     AdminLayout,
   },
+  setup() {
+    const page = usePage()
+    const userData = computed(() => page.props.user)
+
+    return {userData}
+  },
   props: {
-      userData: {
-        type: Object,
-        required: true,
-        default: () => ({
-          name: "John Doe",
-        }),
-      },
       count: {
         type: Object,
         required: true,
