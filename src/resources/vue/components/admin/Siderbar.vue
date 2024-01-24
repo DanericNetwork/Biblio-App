@@ -77,6 +77,6 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: start;
-  background-color: white;
+  background-color: #f2f2f2;
 }
 </style>
