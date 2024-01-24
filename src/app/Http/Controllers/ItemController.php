@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\ModifiedEnum;
 use App\Enums\ResponseStatus;
 use App\Http\Requests\ItemRequest;
+use App\Http\Requests\SearchItemRequest;
 use App\Models\Item;
 use App\Traits\CommonTrait;
 
@@ -39,7 +40,7 @@ class ItemController extends Controller
             'type' => $validated['type'],
             'name' => $validated['name'],
             'description' => $validated['description'],
-            'category' => $validated['category'],
+            'category_id' => $validated['category_id'],
             'ISBN' => $validated['ISBN'],
             'rating' => $validated['rating'],
             'borrowing_time' => $validated['borrowing_time'],
@@ -68,7 +69,7 @@ class ItemController extends Controller
             'type' => $validated['type'],
             'name' => $validated['name'],
             'description' => $validated['description'],
-            'category' => $validated['category'],
+            'category_id' => $validated['category_id'],
             'ISBN' => $validated['ISBN'],
             'rating' => $validated['rating'],
             'borrowing_time' => $validated['borrowing_time'],
@@ -94,5 +95,21 @@ class ItemController extends Controller
             'Item deleted',
             null,
         );
+    }
+
+    public function search(SearchItemRequest $request) {
+      $validated = $request->validated();
+      $search = $validated['search'];
+
+      $items = Item::where('name', 'like', "%{$search}%")
+        ->orWhere('description', 'like', "%{$search}%")
+        ->orWhere('ISBN', 'like', "%{$search}%")
+        ->get();
+
+      return $this->CommonResponse(
+        ResponseStatus::success,
+        'Search results',
+        $items
+      );
     }
 }

@@ -14,6 +14,7 @@ export default defineConfig({
         alias: {
             '@': '../',
             '@components': 'resources/vue/components',
+            '@layouts': 'resources/vue/layouts',
             '@scss': './resources/vue/scss',
         },
     },

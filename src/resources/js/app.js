@@ -1,10 +1,11 @@
 import './bootstrap';
 import { createApp, h } from 'vue'
 import { createPinia } from 'pinia'
-import { createInertiaApp } from '@inertiajs/vue3'
+import { createInertiaApp, Link } from '@inertiajs/vue3'
 import ToastPlugin from "vue-toastification";
 import "vue-toastification/dist/index.css";
 import '@scss/global.scss';
+import VueApexCharts from "vue3-apexcharts";
 
 createInertiaApp({
   resolve: name => {
@@ -16,6 +17,8 @@ createInertiaApp({
       .use(plugin)
       .use(createPinia())
       .use(ToastPlugin)
+      .use(VueApexCharts)
+      .component('InertiaLink', Link)
       .mount(el)
   },
 })
