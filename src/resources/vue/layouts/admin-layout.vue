@@ -19,9 +19,6 @@
       userData: {
         type: Object,
         required: true,
-        default: () => ({
-          name: "John Doe",
-        }),
       },
     },
   };

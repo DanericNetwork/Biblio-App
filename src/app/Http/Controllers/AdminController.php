@@ -2,23 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\ModifiedEnum;
+use App\Models\Fine;
 use App\Models\Item;
+use App\Models\Reservation;
+use App\Models\User;
+use App\Enums\ModifiedEnum;
 use Inertia\Inertia;
 
 class AdminController extends Controller
 {
   public function index()
   {
+    $userData = auth()->user();
+
+    if (!$userData) {
+      return redirect('/');
+    }
+
+    // Get the Statistics
+    $items = Item::count();
+    $customers = User::count();
+    $reservations = Reservation::count();
+    $invoices = Fine::count();
+
     return Inertia::render('admin/index', [
-      'userData' => [
-        'name' => 'John Doe',
-      ],
+      'userData' => $userData,
       'count' => [
-        'items' => 10,
-        'customers' => 20,
-        'reservations' => 30,
-        'invoices' => 40,
+        'items' => $items,
+        'customers' => $customers,
+        'reservations' => $reservations,
+        'invoices' => $invoices,
       ],
       'chart1' => [
         'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
