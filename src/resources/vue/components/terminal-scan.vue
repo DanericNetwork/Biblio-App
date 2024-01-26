@@ -1,7 +1,7 @@
 <template>
   <div>
     <Box :direction="direction">
-      <div class="content">
+      <div class="item-page-content">
         <Icon v-if="text" :icon="icon" size="52px" />
         <span v-if="text" class="text">{{ text }}</span>
       </div>
@@ -59,7 +59,7 @@ export default {
 };
 </script>
 <style lang="scss">
-.content {
+.item-page-content {
   display: flex;
   align-items: center;
   flex-direction: row;

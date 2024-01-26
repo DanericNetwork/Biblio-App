@@ -63,7 +63,7 @@ export default {
   margin-top: 0;
   padding: 10px;
   cursor: pointer;
-  background-color: #D9D9D9;  
+  background-color: #D9D9D9;
 }
 
 .boxes {
