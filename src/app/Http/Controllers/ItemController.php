@@ -205,4 +205,33 @@ class ItemController extends Controller
         $this->ReturnFullItem($item)
       );
     }
+
+    public function ApiGet($identifier) {
+      $library_pass = LibraryPass::where('barcode', Request()->bearerToken())->first();
+      $user = User::where('id', $library_pass->user_id)->first();
+
+      if (!$user->can(Permissions::VIEW_ITEM->value) && Env::get('APP_ENV') != 'local') {
+        return $this->CommonResponse(
+          ResponseStatus::unauthorized,
+          'Permission denied',
+          null
+        );
+      }
+
+      $item = Item::where('identifier', $identifier)->first();
+
+      if (!isset($item)) {
+        return $this->CommonResponse(
+          ResponseStatus::notFound,
+          'Item not found',
+          null
+        );
+      }
+
+      return $this->CommonResponse(
+        ResponseStatus::success,
+        'Item found',
+        $this->ReturnFullItem($item)
+      );
+    }
 }
