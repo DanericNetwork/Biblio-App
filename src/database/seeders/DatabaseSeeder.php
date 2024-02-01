@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Enums\ModifiedEnum;
+use App\Models\Author;
 use App\Models\LibraryPass;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -26,7 +28,7 @@ class DatabaseSeeder extends Seeder
             'street' => 'Straat',
             'zip_code' => '1234AB',
             'house_number' => '1',
-            'modified_kind' => 'I',
+            'modified_kind' => ModifiedEnum::inserted,
             'modified_user' => 1,
             'created_at' => now(),
             'updated_at' => now(),
@@ -36,7 +38,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => $superAdmin->id,
             'barcode' => $this->generateValidLibraryPassBarCode(),
             'is_active' => true,
-            'modified_kind' => 'I',
+            'modified_kind' => ModifiedEnum::inserted,
             'modified_user' => $superAdmin->id,
         ]);
 
@@ -59,8 +61,15 @@ class DatabaseSeeder extends Seeder
             'user_id' => $admin->id,
             'barcode' => $this->generateValidLibraryPassBarCode(),
             'is_active' => true,
-            'modified_kind' => 'I',
+            'modified_kind' => ModifiedEnum::inserted,
             'modified_user' => $superAdmin->id,
+        ]);
+
+
+        Author::create([
+          'name' => 'Unknown',
+          'modified_kind' => ModifiedEnum::inserted,
+          'modified_user' => $superAdmin->id,
         ]);
     }
 }

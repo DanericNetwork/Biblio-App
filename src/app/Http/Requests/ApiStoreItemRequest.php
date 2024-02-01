@@ -3,17 +3,16 @@
 namespace App\Http\Requests;
 
 use App\Enums\Permissions;
-use App\Models\Item;
 use Illuminate\Foundation\Http\FormRequest;
 
-class SearchItemRequest extends FormRequest
+class ApiStoreItemRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-      return true;
+        return true;
     }
 
     /**
@@ -24,7 +23,10 @@ class SearchItemRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'search' => 'required|string|max:255'
+          'title' => 'required|string',
+          'description' => 'required|string',
+          'ISBN' => 'required|string',
+          'images' => 'required|array',
         ];
     }
 }
