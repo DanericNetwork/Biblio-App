@@ -126,15 +126,10 @@ class GrantController extends Controller
       $grant = Grant::where('user_id', $user->id)
         ->where('item_id', $item->id)
         ->where('modified_kind', '!=', ModifiedEnum::deleted)
+        ->where('return_date', null)
         ->first();
 
       if (isset($grant)) {
-
-        if ($grant->return_date != null) {
-          return $this->CommonResponse(
-            ResponseStatus::forbidden, 'Item already returned', null
-          );
-        }
 
         $grant->return_date = now();
         $grant->modified_kind = ModifiedEnum::modified;
