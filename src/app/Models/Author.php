@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Author extends Model
 {
-    use HasFactory;
     protected $guarded = [];
+
+    public function items()
+    {
+        return $this->hasMany(Item::class);
+    }
 }

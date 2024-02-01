@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\GrantController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,5 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/item/search', [ItemController::class, 'search']);
-Route::post('/users/search', [UserController::class, 'search']);
+Route::post('/item/search', [ItemController::class, 'search'])->middleware('api.auth');
+Route::post('/users/search', [UserController::class, 'search'])->middleware('api.auth');
+
+Route::post('/item/store', [ItemController::class, 'ApiStore'])->middleware('api.auth');
+Route::post('/item/grant', [GrantController::class, 'GrantItem'])->middleware('api.auth');
