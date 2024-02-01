@@ -10,6 +10,7 @@ use App\Http\Requests\ApiStoreItemRequest;
 use App\Http\Requests\ItemRequest;
 use App\Http\Requests\SearchItemRequest;
 use App\Models\Author;
+use App\Models\Grant;
 use App\Models\Item;
 use App\Models\ItemImage;
 use App\Models\LibraryPass;
@@ -148,6 +149,13 @@ class ItemController extends Controller
 
           }
         }
+      }
+
+      foreach ($items as $item) {
+        $item->grants = Grant::where('item_id', $item->id)
+          ->where('modified_kind', '!=', ModifiedEnum::deleted)
+          ->where('return_date', null)
+          ->get();
       }
 
       return $this->CommonResponse(
