@@ -1,6 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\GrantController;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/item/search', [ItemController::class, 'search'])->middleware('api.auth');
+Route::post('/users/search', [UserController::class, 'search'])->middleware('api.auth');
+
+Route::post('/item/store', [ItemController::class, 'ApiStore'])->middleware('api.auth');
+Route::post('/item/grant', [GrantController::class, 'GrantItem'])->middleware('api.auth');
